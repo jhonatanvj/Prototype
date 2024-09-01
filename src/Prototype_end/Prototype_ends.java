@@ -9,6 +9,7 @@ package Prototype_end;
  * @author jhona
  */
 
+import Factory.SingletonVehiculoFactory;
 import Vehiculos.Automovil;
 import Vehiculos.Motocicleta;
 import Interface.Vehiculos;
@@ -82,17 +83,12 @@ public class Prototype_ends extends JFrame {
         textAreaClon = createTextArea(260, 240, 220, 60);
 
         btnSeleccionar.addActionListener(e -> {
+            SingletonVehiculoFactory factory = SingletonVehiculoFactory.getInstancia();
             if (bton_Automovil.isSelected()) {
-                vehiculoOriginal = new Automovil();
-                vehiculoOriginal.setNombre("Automóvil");
-                vehiculoOriginal.setColor("Rojo");
-                vehiculoOriginal.setVelocidadMaxima(180);
+                vehiculoOriginal = factory.crearVehiculo("Automovil");
                 vehiculoClon = vehiculoOriginal.clonar();
             } else if (bton_Motocicleta.isSelected()) {
-                vehiculoOriginal = new Motocicleta();
-                vehiculoOriginal.setNombre("Motocicleta");
-                vehiculoOriginal.setColor("Azul");
-                vehiculoOriginal.setVelocidadMaxima(220);
+                vehiculoOriginal = factory.crearVehiculo("Motocicleta");
                 vehiculoClon = vehiculoOriginal.clonar();
             }
             mostrarDatos();
